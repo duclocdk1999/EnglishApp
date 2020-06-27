@@ -19,7 +19,7 @@
 
 # POSTMAN - API
 
-#### Đăng ký account: http://localhost:3000/register, method=POST
+### Đăng ký account: http://localhost:3000/register, method=POST
 {\
     "username": "lhdat",\
     "email": "lddat@apcs.vn",\
