@@ -20,7 +20,7 @@
 # POSTMAN - API
 
 #### Đăng ký account: http://localhost:3000/register, method=POST
-{
+{\
     "username": "lhdat",\
     "email": "lddat@apcs.vn",\
     "password": "1",\
@@ -32,13 +32,13 @@
 }
 
 ### Đăng nhập account: http://localhost:3000/login, method=POST
-{
+{\
     "username": "oppa",\
     "password": "1"\
 }
 
 ### Cập nhật thông tin account: http://localhost:3000/update, method=PUT
-{
+{\
     "username": "oppa",\
     "email": "duclocdk1999@gmail.com",\
     "password": "1",\
@@ -51,7 +51,7 @@
 
 
 ### Cập nhật password cho account: http://localhost:3000/edit-password, method=PUT
-{
+{\
     "username": "oppa",\
     "password": "1",\
     "newPassword": "100"\
