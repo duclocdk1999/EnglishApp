@@ -33,26 +33,26 @@
 
 ### Đăng nhập account: http://localhost:3000/login, method=POST
 {
-    "username": "oppa",
-    "password": "1"
+    "username": "oppa",\
+    "password": "1"\
 }
 
 ### Cập nhật thông tin account: http://localhost:3000/update, method=PUT
 {
-    "username": "oppa",
-    "email": "duclocdk1999@gmail.com",
-    "password": "1",
-    "type": "student-account",
-    "phone": "0905228878",
-    "gender": false,
-    "address": "135B District 1, California, US",
-    "birthDate": "17/02/1999"
+    "username": "oppa",\
+    "email": "duclocdk1999@gmail.com",\
+    "password": "1",\
+    "type": "student-account",\
+    "phone": "0905228878",\
+    "gender": false,\
+    "address": "135B District 1, California, US",\
+    "birthDate": "17/02/1999"\
 }
 
 
 ### Cập nhật password cho account: http://localhost:3000/edit-password, method=PUT
 {
-    "username": "oppa",
-    "password": "1",
-    "newPassword": "100"
+    "username": "oppa",\
+    "password": "1",\
+    "newPassword": "100"\
 }
