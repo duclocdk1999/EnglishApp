@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
-const database = mongoose.connect("mongodb://127.0.0.1:27017/EnglishApp");
+mongoose.connect(
+    "mongodb://127.0.0.1:27017/EnglishApp", 
+    { 
+        useNewUrlParser: true,  
+        useUnifiedTopology: true 
+    }
+);
+mongoose.set('useCreateIndex', true)
 
 const bodyParser = require("body-parser");
 
@@ -10,12 +17,130 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 const port = 3000
 // -------------------------------------------------------------------------------------
-var Account = require("./model/account");
-const { response } = require("express");
+// declare table variables
+var Account = require("./model/account")
+var Category = require("./model/category")
+var Topic = require("./model/topic")
 
 
 // -------------------------------------------------------------------------------------
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('Hello đũy Đạt :)'))
+// -------------------------------------------------------------------------------------
+app.get('/category/get/list', function(request, response) {
+    
+    Category.find({}, function(error, foundCategoryList) {
+        if (error) {
+            console.log(error)
+            response.status(500).send("internal server error!")
+        }   
+        else {
+            console.log("get category list sucessfully !")
+            response.status(400).send(foundCategoryList)
+        }
+    })
+})
+// -------------------------------------------------------------------------------------
+app.get('/category/get/:categoryId', function(request, response) {
+    // postman from:
+    // "http://localhost:3000/category/categoryId"
+
+    // get a particular category information by ID
+
+    var categoryId = request.params.categoryId
+    Category.findById(categoryId, function(error, foundCategory) {
+        if (error) {
+            console.log(error)
+            response.status(500).send("wrong category id!");
+        }
+        else {
+            console.log("get category sucessfully !")
+            response.status(400).send(foundCategory)
+        }
+    })
+})
+// -------------------------------------------------------------------------------------
+app.get('/topic/get/:topicId', function(request, response) {
+    // postman form: no need request body
+
+    var topicId = request.params.topicId
+    Topic.findById(topicId, function(error, foundTopic) {
+        if (error) {
+            console.log(error)
+            response.status(500).send("server internal error !")
+        }
+        else {
+            if (foundTopic === null) {
+                console.log("topic Id not found !")
+                response.status(500).send("wrong topic ID !")
+            }
+            else {
+                console.log("get topic by id sucessfully !")
+                response.status(400).send(foundTopic)
+            }
+        }
+    })
+})
+// -------------------------------------------------------------------------------------
+app.get('/topic/get/list', function(request, response) {
+    
+    // postman form: no need request body
+
+    Topic.find({}, function(error, foundTopicList) {
+        if (error) {
+            console.log(error)
+            response.status(500).send("server internal error !")
+        }
+        else {
+            console.log("get topic list sucessfully !")
+            response.status(400).send(foundTopicList)
+        }
+    })
+})
+// -------------------------------------------------------------------------------------
+app.post('/topic/new', function(request, response) {
+    // postman form:
+    /*
+     * "name": "Animal",
+     * "status": true,
+     * "category": 
+     * {
+     *      "_id": "5ef95ec9aed5472405d0d571"
+     * }, 
+     * "type": "grammar"
+     */
+    
+    var newTopic = new Topic(request.body)
+    newTopic.save(function(error, savedTopic) {
+        if (error) {
+            console.log(error)
+            response.status(500).send("this topic name does exist!")
+        }
+        else {
+            console.log("insert new topic sucessfully!")
+            response.status(400).send(savedTopic)
+        }
+    })
+})
+// -------------------------------------------------------------------------------------
+app.post('/category/new', function(request, response) {
+
+    // postman form:
+    /*
+     * name: first category
+     */
+
+    newCategory = new Category(request.body)
+    newCategory.save(function(error, savedCategory) {
+        if (error) {
+            console.log(error)
+            response.status(500).send("failed !")
+        }
+        else {
+            console.log("insert new category sucessfully!")
+            response.status(400).send(savedCategory)
+        }
+    })
+})
 // -------------------------------------------------------------------------------------
 app.post("/register", function(request, response) {
 

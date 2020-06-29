@@ -29,7 +29,19 @@
     "gender": true,\
     "address": "VN",\
     "birthDate": "17/02/2000"\
-}
+}\
+recieved:\
+{\
+    "id": "0d78axa803rxaa"
+    "username": "lhdat",\
+    "email": "lddat@apcs.vn",\
+    "password": "1",\
+    "type": "student-account",\
+    "phone": "0905259939",\
+    "gender": true,\
+    "address": "VN",\
+    "birthDate": "17/02/2000"\
+}\
 
 ### Đăng nhập account: http://localhost:3000/login, method=POST
 {\
